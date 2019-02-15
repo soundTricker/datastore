@@ -1136,3 +1136,80 @@ func TestCloudDatastore_Namespace(t *testing.T) {
 		t.Fatalf("unexpected: %v", v)
 	}
 }
+
+// CloudIssue52FooA has field that struct with pointer.
+type CloudIssue52FooA struct {
+	Bar *CloudIssue52Bar `datastore:",flatten"`
+}
+
+// CloudIssue52FooB has field that struct without pointer.
+type CloudIssue52FooB struct {
+	Bar CloudIssue52Bar `datastore:",flatten"`
+}
+
+// CloudIssue52Bar is a field of struct about CloudIssue52Foo*.
+type CloudIssue52Bar struct {
+	Name string
+}
+
+func TestCloudDatastore_Issue52(t *testing.T) {
+	// t.SkipNow() // datastore: cannot load field "Bar.Name" into a "testbed.CloudIssue52FooA": no such struct field
+
+	ctx := context.Background()
+	client, err := datastore.NewClient(ctx, internal.GetProjectID())
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	defer client.Close()
+	defer cleanUp()
+
+	{
+		obj := &CloudIssue52FooA{
+			Bar: &CloudIssue52Bar{
+				Name: "Issue 52",
+			},
+		}
+		key := datastore.NameKey("CloudIssue52A", "1", nil)
+		_, err := client.Put(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	{
+		obj := &CloudIssue52FooB{
+			Bar: CloudIssue52Bar{
+				Name: "Issue 52",
+			},
+		}
+		key := datastore.NameKey("CloudIssue52B", "1", nil)
+		_, err := client.Put(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	{
+		obj := &CloudIssue52FooA{Bar: &CloudIssue52Bar{}}
+		key := datastore.NameKey("CloudIssue52A", "1", nil)
+		err := client.Get(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if obj.Bar == nil {
+			t.Error("Issue52FooA.Bar is nil")
+		} else if v := obj.Bar.Name; v != "Issue 52" {
+			t.Errorf("unexpected: %v", v)
+		}
+	}
+	{
+		obj := &CloudIssue52FooA{}
+		key := datastore.NameKey("CloudIssue52B", "1", nil)
+		err := client.Get(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if v := obj.Bar.Name; v != "Issue 52" {
+			t.Errorf("unexpected: %v", v)
+		}
+	}
+}

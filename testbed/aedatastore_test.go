@@ -976,3 +976,78 @@ func TestAEDatastore_KindlessQueryWithAncestor(t *testing.T) {
 		t.Fatalf("unexpected: %v", v)
 	}
 }
+
+// AEIssue52FooA has field that struct with pointer.
+type AEIssue52FooA struct {
+	Bar *AEIssue52Bar `datastore:""`
+}
+
+// AEIssue52FooB has field that struct without pointer.
+type AEIssue52FooB struct {
+	Bar AEIssue52Bar `datastore:""`
+}
+
+// AEIssue52Bar is a field of struct about AEIssue52Foo*.
+type AEIssue52Bar struct {
+	Name string
+}
+
+func TestAEDatastore_Issue52(t *testing.T) {
+	t.SkipNow() // datastore: unsupported struct field type: *testbed.AEIssue52Bar
+
+	ctx, close, err := newContext()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer close()
+
+	{
+		obj := &AEIssue52FooA{
+			Bar: &AEIssue52Bar{
+				Name: "Issue 52",
+			},
+		}
+		key := datastore.NewKey(ctx, "AEIssue52A", "1", 0, nil)
+		_, err := datastore.Put(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	{
+		obj := &AEIssue52FooB{
+			Bar: AEIssue52Bar{
+				Name: "Issue 52",
+			},
+		}
+		key := datastore.NewKey(ctx, "AEIssue52B", "1", 0, nil)
+		_, err := datastore.Put(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	{
+		obj := &AEIssue52FooA{}
+		key := datastore.NewKey(ctx, "AEIssue52A", "1", 0, nil)
+		err := datastore.Get(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if obj.Bar == nil {
+			t.Error("Issue52FooA.Bar is nil")
+		} else if v := obj.Bar.Name; v != "Issue 52" {
+			t.Errorf("unexpected: %v", v)
+		}
+	}
+	{
+		obj := &AEIssue52FooA{}
+		key := datastore.NewKey(ctx, "AEIssue52B", "1", 0, nil)
+		err := datastore.Get(ctx, key, obj)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if v := obj.Bar.Name; v != "Issue 52" {
+			t.Errorf("unexpected: %v", v)
+		}
+	}
+}
