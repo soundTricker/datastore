@@ -6,9 +6,9 @@ import (
 	"net/url"
 
 	"go.mercari.io/datastore/aedatastore"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/aetest"
-	"google.golang.org/appengine/taskqueue"
+	"google.golang.org/appengine/v2"
+	"google.golang.org/appengine/v2/aetest"
+	"google.golang.org/appengine/v2/taskqueue"
 )
 
 func appengineContext() (ctx context.Context, cancelFn func() error) {

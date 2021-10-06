@@ -14,8 +14,8 @@ import (
 	_ "github.com/favclip/testerator/memcache"
 
 	netcontext "golang.org/x/net/context"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/v2"
+	"google.golang.org/appengine/v2/datastore"
 )
 
 type AEDatastoreStruct struct {

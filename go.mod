@@ -19,6 +19,6 @@ require (
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/tools v0.1.5
 	google.golang.org/api v0.56.0
-	google.golang.org/appengine v1.6.7
+	google.golang.org/appengine/v2 v2.0.0-rc2
 	google.golang.org/grpc v1.40.0
 )

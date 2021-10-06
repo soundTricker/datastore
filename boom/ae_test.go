@@ -7,7 +7,7 @@ import (
 	"go.mercari.io/datastore"
 	"go.mercari.io/datastore/dsmiddleware/aememcache"
 	"go.mercari.io/datastore/internal/testutils"
-	"google.golang.org/appengine/memcache"
+	"google.golang.org/appengine/v2/memcache"
 )
 
 func TestBoom_AEMemcache(t *testing.T) {

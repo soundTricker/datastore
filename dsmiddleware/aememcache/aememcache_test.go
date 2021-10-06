@@ -19,7 +19,7 @@ import (
 	"go.mercari.io/datastore/dsmiddleware/storagecache"
 	"go.mercari.io/datastore/internal/testutils"
 	"google.golang.org/api/iterator"
-	"google.golang.org/appengine/memcache"
+	"google.golang.org/appengine/v2/memcache"
 )
 
 func TestMain(m *testing.M) {

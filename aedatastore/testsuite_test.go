@@ -17,7 +17,7 @@ import (
 	_ "go.mercari.io/datastore/testsuite/realworld/tbf"
 
 	"go.mercari.io/datastore/dsmiddleware/aememcache"
-	"google.golang.org/appengine"
+	"google.golang.org/appengine/v2"
 )
 
 func TestAEDatastoreTestSuite(t *testing.T) {

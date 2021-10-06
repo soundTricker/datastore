@@ -14,7 +14,7 @@ import (
 	"go.mercari.io/datastore"
 	"go.mercari.io/datastore/testsuite"
 	netcontext "golang.org/x/net/context"
-	"google.golang.org/appengine"
+	"google.golang.org/appengine/v2"
 )
 
 // TestSuite contains all the test cases that this package provides.

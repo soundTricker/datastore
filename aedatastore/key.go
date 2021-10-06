@@ -4,7 +4,7 @@ import (
 	"context"
 
 	w "go.mercari.io/datastore"
-	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/v2/datastore"
 )
 
 var _ w.Key = (*keyImpl)(nil)

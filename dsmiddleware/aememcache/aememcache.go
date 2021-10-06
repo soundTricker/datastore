@@ -8,8 +8,8 @@ import (
 
 	"go.mercari.io/datastore"
 	"go.mercari.io/datastore/dsmiddleware/storagecache"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/memcache"
+	"google.golang.org/appengine/v2"
+	"google.golang.org/appengine/v2/memcache"
 )
 
 var _ storagecache.Storage = &cacheHandler{}

@@ -4,7 +4,7 @@ Package datastore has an abstract representation of (AppEngine | Cloud) Datastor
 repository https://github.com/mercari/datastore
 
 Let's read https://cloud.google.com/datastore/docs/ or https://cloud.google.com/appengine/docs/standard/go/datastore/ .
-You should also check https://godoc.org/cloud.google.com/go/datastore or https://godoc.org/google.golang.org/appengine/datastore as datastore original library.
+You should also check https://godoc.org/cloud.google.com/go/datastore or https://godoc.org/google.golang.org/appengine/v2/datastore as datastore original library.
 
 Japanese version https://github.com/mercari/datastore/blob/master/doc_ja.go
 
@@ -103,12 +103,12 @@ from AE Datastore
 	rewrite those using functions of datastore package to FromContext function and Client method calls.
 	replace err.(appengine.MultiError) to err.(datastore.MultiError) .
 	Stop using appengine.BlobKey and replace with string.
-	replace google.golang.org/appengine/datastore.Done to google.golang.org/api/iterator.Done .
+	replace google.golang.org/appengine/v2/datastore.Done to google.golang.org/api/iterator.Done .
 	replace key.IntID() to key.ID() .
 	replace key.StringID() to key.Name() .
 	When nesting a struct, apply `datastore:", flatten "` to the corresponding field.
 	Delete datastore.TransactionOptions, it is not supported.
-	If using google.golang.org/appengine/datastore , replace to go.mercari.io/datastore .
+	If using google.golang.org/appengine/v2/datastore , replace to go.mercari.io/datastore .
 
 from Cloud Datastore
 

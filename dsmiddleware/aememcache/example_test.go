@@ -5,8 +5,8 @@ import (
 
 	"go.mercari.io/datastore/aedatastore"
 	"go.mercari.io/datastore/dsmiddleware/aememcache"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/aetest"
+	"google.golang.org/appengine/v2"
+	"google.golang.org/appengine/v2/aetest"
 )
 
 func appengineContext() (ctx context.Context, cancelFn func() error) {

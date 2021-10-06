@@ -8,7 +8,7 @@ import (
 	w "go.mercari.io/datastore"
 	"go.mercari.io/datastore/internal/shared"
 	netcontext "golang.org/x/net/context"
-	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/v2/datastore"
 )
 
 var _ w.Transaction = (*transactionImpl)(nil)

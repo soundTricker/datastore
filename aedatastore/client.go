@@ -5,7 +5,7 @@ import (
 
 	w "go.mercari.io/datastore"
 	"go.mercari.io/datastore/internal/shared"
-	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/v2/datastore"
 )
 
 var _ w.Client = (*datastoreImpl)(nil)

@@ -3,9 +3,9 @@ package aeprodtest
 import (
 	"net/http"
 
-	"google.golang.org/appengine"
-	originaldatastore "google.golang.org/appengine/datastore"
-	"google.golang.org/appengine/log"
+	"google.golang.org/appengine/v2"
+	originaldatastore "google.golang.org/appengine/v2/datastore"
+	"google.golang.org/appengine/v2/log"
 
 	"go.mercari.io/datastore/aedatastore"
 )

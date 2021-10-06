@@ -3,7 +3,7 @@ package datastore // import "go.mercari.io/datastore"
 /*
 Package datastore は、(AppEngine|Cloud) Datastoreの抽象表現を持ちます。
 https://cloud.google.com/datastore/docs/ もしくは https://cloud.google.com/appengine/docs/standard/go/datastore/ をよく読みましょう。
-また、オリジナルのライブラリとして https://godoc.org/cloud.google.com/go/datastore もしくは https://godoc.org/google.golang.org/appengine/datastore も確認すると良いでしょう。
+また、オリジナルのライブラリとして https://godoc.org/cloud.google.com/go/datastore もしくは https://godoc.org/google.golang.org/appengine/v2/datastore も確認すると良いでしょう。
 
 
 基本的な使い方
@@ -91,12 +91,12 @@ AE Datastoreからの移行
 	datastoreパッケージの関数を使っているものをFromContextとClientのメソッド呼び出しに書き換える。
 	err.(appengine.MultiError) を err.(datastore.MultiError) に置き換える。
 	appengine.BlobKey を使うのをやめ、stringに置き換える。
-	google.golang.org/appengine/datastore.Done を google.golang.org/api/iterator.Done に置き換える。
+	google.golang.org/appengine/v2/datastore.Done を google.golang.org/api/iterator.Done に置き換える。
 	key.IntID() を key.ID() に置き換える。
 	key.StringID() を key.Name() に置き換える。
 	structをネストさせている場合、該当フィールドに `datastore:",flatten"` を適用する。
 	datastore.TransactionOptions はサポートされないので削除する。
-	google.golang.org/appengine/datastore をimportしている箇所がないかチェックし、あれば go.mercari.io/datastore に置き換える。
+	google.golang.org/appengine/v2/datastore をimportしている箇所がないかチェックし、あれば go.mercari.io/datastore に置き換える。
 
 Cloud Datastoreからの移行
 

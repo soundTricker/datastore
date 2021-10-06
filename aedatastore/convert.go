@@ -6,8 +6,8 @@ import (
 
 	w "go.mercari.io/datastore"
 	"google.golang.org/api/iterator"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/v2"
+	"google.golang.org/appengine/v2/datastore"
 )
 
 func namespaceFromContext(ctx context.Context) string {

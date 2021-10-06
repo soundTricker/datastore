@@ -11,8 +11,8 @@ import (
 	"go.mercari.io/datastore/dsmiddleware/aememcache"
 	"go.mercari.io/datastore/dsmiddleware/localcache"
 	"go.mercari.io/datastore/internal/testutils"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/aetest"
+	"google.golang.org/appengine/v2"
+	"google.golang.org/appengine/v2/aetest"
 )
 
 const ProjectID = "datastore-wrapper"
